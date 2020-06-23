@@ -3,11 +3,46 @@
   <head>
     <title>Parcel Sandbox</title>
     <meta charset="UTF-8" />
+
+    <script>
+      function launchDialog() {
+        let outterModal = document.getElementById("outterModal");
+        outterModal.classList.remove("hide");
+      }
+      function hideModal() {
+        let innerModal = document.getElementById("innerModal");
+        var e = window.event || arguments.callee.caller.arguments[0];
+        console.log(e.target);
+        if (innerModal.contains(e.target)) {
+          return;
+        }
+        let outterModal = document.getElementById("outterModal");
+        outterModal.classList.add("hide");
+      }
+    </script>
   </head>
 
   <body>
-    <div id="outterModal">
-      <div id="innerModao"></div>
+    <div>
+      <button onclick="launchDialog()">
+        Launch Dialog
+      </button>
+    </div>
+    <div id="outterModal" class="Outter hide" onmousedown="hideModal()">
+      <div id="innerModal" class="inner">
+        <div style="margin-bottom: 10px;">
+          <span style="margin-right: 46px;">IP:</span>
+          <input type="text" class="input" />
+        </div>
+        <div style="margin-bottom: 10px;">
+          <span style="margin-right: 17px;">MASK:</span>
+          <input type="text" class="input" />
+        </div>
+        <div style="margin-bottom: 10px;">
+          <span>Gateway:</span>
+          <input type="text" class="input" />
+        </div>
+      </div>
     </div>
 
     <script src="src/index.js"></script>
